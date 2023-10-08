@@ -1,0 +1,44 @@
+version: "3.8"
+volumes:
+  php-fpm-socket:
+  db-store:
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./infra/docker/development/php/Dockerfile
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - ./laravel:/work/laravel
+
+  web:
+    build:
+      context: .
+      dockerfile: ./infra/docker/development/nginx/Dockerfile
+    ports:
+      - 48080:80
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - ./laravel:/work/laravel
+
+  db:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: ./infra/docker/development/mysql/Dockerfile
+    ports:
+      - 43306:3306
+    volumes:
+      - db-store:/var/lib/mysql
+      - ./infra/docker/development/mysql/init:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+
+  vite:
+    build:
+      context: .
+      dockerfile: infra/docker/development/vite/Dockerfile
+    ports:
+      - 5173:5173
+    volumes:
+      - ./laravel:/work/laravel # todo: 必要なファイルだけマウントする

@@ -1,0 +1,11 @@
+-- development
+CREATE DATABASE laravel DEFAULT CHARACTER SET utf8mb4;
+CREATE USER 'laravel'@'%' IDENTIFIED BY 'laravel';
+GRANT ALL PRIVILEGES ON *.* TO 'laravel'@'%';
+FLUSH PRIVILEGES;
+
+-- testing
+CREATE DATABASE laravel_test DEFAULT CHARACTER SET utf8mb4;
+CREATE USER 'test'@'%' IDENTIFIED BY 'test';
+GRANT ALL PRIVILEGES ON *.* TO 'test'@'%';
+FLUSH PRIVILEGES;
