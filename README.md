@@ -1,5 +1,6 @@
 # ECS on Fargate for Laravel by Terraform 
-![image](https://github.com/morisekntr/ECSonFARGATEforLARAVEL/assets/100818238/2d66a9df-b4e2-4361-abb4-6573a393840f)
+![image](https://github.com/morisekntr/terraform-fargate-laravel/assets/100818238/d9dcc8e6-e417-40db-819a-6a72139a30e3)
+
 
 ## 1. Create an S3 bucket for backend management of tfstate
 1. Create a bucket with a globally unique name, followed by -tfstate.
